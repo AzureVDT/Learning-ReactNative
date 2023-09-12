@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .group {
+            margin-bottom: 5px;
+            width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .challenge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="challenge">
+        <h1>Challenge 01+02</h1>
+        <div class="group">
+            <input type="text" placeholder="Enter marks height" name="txtMarkHeight" id="txtMarkHeight">
+            <input type="text" placeholder="Enter marks weight" name="txtMarkWeight" id="txtMarkWeight">
+        </div>
+        <div class="group">
+            <input type="text" placeholder="Enter john height" name="txtJohnHeight" id="txtJohnHeight">
+            <input type="text" placeholder="Enter john weight" name="txtJohnWeight" id="txtJohnWeight">
+        </div>
+        <button id="btnChallenge01" onclick="handleChallenge01()">Check</button>
+        <span id="tbChallenge01"></span>
+    </div>
+    <div class="challenge">
+        <h1>Challenge 03</h1>
+        <div class="group">
+            <input type="text" placeholder="Enter dolphins score. Please enter with format: 100/100/100" name="dolphins_scrore" id="dolphins_scrore" style="width: 100%;">
+        </div>
+        <div class="group">
+            <input type="text" placeholder="Enter Koalas score. Please enter with format: 100/100/100" name="koalas_scrore" id="koalas_scrore" style="width: 100%;">
+        </div>
+        <button id="btnChallenge02" onclick="handleChallenge02()">Check</button>
+        <span id="tbChallenge02"></span>
+    </div>
+    <script>
+        const handleChallenge01 = () => {
+            function handleCalulatorBMI(mass, height) {
+                return (mass / (height * height)) * 100000;
+            }
+            const txtMarkHeight = Number(document.getElementById('txtMarkHeight').value);
+            const txtMarkWeight = Number(document.getElementById('txtMarkWeight').value);
+            const txtJohnHeight = Number(document.getElementById('txtJohnHeight').value);
+            const txtJohnWeight = Number(document.getElementById('txtJohnWeight').value);
+            console.log(txtMarkHeight, txtJohnHeight, txtMarkWeight, txtJohnWeight);
+            const markBMI = handleCalulatorBMI(txtMarkWeight, txtMarkHeight);
+            const johnBMI = handleCalulatorBMI(txtJohnWeight, txtJohnHeight);
+            const markHigherBMI = markBMI > johnBMI ? `Mark's BMI is higher than John's!` : `John's BMI is higher than Mark's!`;
+            const tbChallenge01 = document.getElementById('tbChallenge01')
+            tbChallenge01.innerHTML = markHigherBMI
+            const logResults = markBMI > johnBMI ? `Mark's BMI ${markBMI} is higher than John's ${johnBMI}!` : `John's BMI ${johnBMI} is higher than Mark's! ${markBMI}`;
+            console.log(logResults);
+        }
+        const handleChallenge02 = () => {
+            const dolphins = document.getElementById('dolphins_scrore').value;
+            const koalas_scrore = document.getElementById('koalas_scrore').value;
+            // const dolphins_scrore =  
+        }
+    </script>
+</body>
+
+</html>
