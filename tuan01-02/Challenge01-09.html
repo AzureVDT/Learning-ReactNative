@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .group {
+                margin-bottom: 5px;
+                width: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .challenge {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="challenge">
+            <h1>Challenge 01+02</h1>
+            <div class="group">
+                <input
+                    type="text"
+                    placeholder="Enter marks height"
+                    name="txtMarkHeight"
+                    id="txtMarkHeight"
+                />
+                <input
+                    type="text"
+                    placeholder="Enter marks weight"
+                    name="txtMarkWeight"
+                    id="txtMarkWeight"
+                />
+            </div>
+            <div class="group">
+                <input
+                    type="text"
+                    placeholder="Enter john height"
+                    name="txtJohnHeight"
+                    id="txtJohnHeight"
+                />
+                <input
+                    type="text"
+                    placeholder="Enter john weight"
+                    name="txtJohnWeight"
+                    id="txtJohnWeight"
+                />
+            </div>
+            <button id="btnChallenge01" onclick="handleChallenge01()">
+                Check
+            </button>
+            <span id="tbChallenge01"></span>
+        </div>
+        <div class="challenge">
+            <h1>Challenge 03</h1>
+            <div class="group">
+                <input
+                    type="text"
+                    placeholder="Enter dolphins score. Please enter with format example: 100/100/100"
+                    name="dolphins_score"
+                    id="dolphins_score"
+                    style="width: 100%"
+                />
+            </div>
+            <div class="group">
+                <input
+                    type="text"
+                    placeholder="Enter Koalas score. Please enter with format example: 100/100/100"
+                    name="koalas_score"
+                    id="koalas_score"
+                    style="width: 100%"
+                />
+            </div>
+            <button id="btnChallenge03" onclick="handleChallenge03()">
+                Check
+            </button>
+            <span id="tbChallenge03"></span>
+        </div>
+        <div class="challenge">
+            <h1>Challenge 04</h1>
+            <div class="group">
+                <input
+                    type="text"
+                    placeholder="Enter bill value"
+                    name="bill"
+                    id="bill"
+                />
+            </div>
+            <button id="btnChallenge04" onclick="handleChallenge04()">
+                Check
+            </button>
+            <span id="tbChallenge04"></span>
+        </div>
+        <script>
+            const handleChallenge01 = () => {
+                function handleCalulatorBMI(mass, height) {
+                    return mass / (height * height);
+                }
+                const txtMarkHeight = Number(
+                    document.getElementById("txtMarkHeight").value
+                );
+                const txtMarkWeight = Number(
+                    document.getElementById("txtMarkWeight").value
+                );
+                const txtJohnHeight = Number(
+                    document.getElementById("txtJohnHeight").value
+                );
+                const txtJohnWeight = Number(
+                    document.getElementById("txtJohnWeight").value
+                );
+                const markBMI = handleCalulatorBMI(
+                    txtMarkWeight,
+                    txtMarkHeight
+                );
+                const johnBMI = handleCalulatorBMI(
+                    txtJohnWeight,
+                    txtJohnHeight
+                );
+                const markHigherBMI =
+                    markBMI > johnBMI
+                        ? `Mark's BMI is higher than John's!`
+                        : `John's BMI is higher than Mark's!`;
+                const tbChallenge01 = document.getElementById("tbChallenge01");
+                tbChallenge01.innerHTML = markHigherBMI;
+                const logResults =
+                    markBMI > johnBMI
+                        ? `Mark's BMI ${markBMI} is higher than John's ${johnBMI}!`
+                        : `John's BMI ${johnBMI} is higher than Mark's! ${markBMI}`;
+                console.log(logResults);
+            };
+            const handleChallenge03 = () => {
+                function mean(arr) {
+                    if (arr?.length === 0) {
+                        return 0;
+                    }
+                    const sum = arr?.reduce((acc, num) => acc + num, 0);
+                    return sum / arr?.length;
+                }
+                const dolphins_score = document
+                    .getElementById("dolphins_score")
+                    .value.split("/")
+                    .map((num) => Number(num));
+                const koalas_score = document
+                    .getElementById("koalas_score")
+                    .value.split("/")
+                    .map((num) => Number(num));
+                function winner(dolphins, koalas) {
+                    const dolphinsAverage = mean(dolphins);
+                    const koalasAverage = mean(koalas);
+                    if (
+                        dolphinsAverage >= 100 &&
+                        dolphinsAverage > koalasAverage
+                    ) {
+                        return "Dolphins win!";
+                    } else if (
+                        koalasAverage >= 100 &&
+                        koalasAverage > dolphinsAverage
+                    ) {
+                        return "Koalas win!";
+                    } else if (
+                        dolphinsAverage === koalasAverage &&
+                        dolphinsAverage >= 100 &&
+                        koalasAverage >= 100
+                    ) {
+                        return "It's a draw!";
+                    } else {
+                        return "No one wins!";
+                    }
+                }
+
+                const tbChallenge03 = document.getElementById("tbChallenge03");
+                tbChallenge03.innerHTML = winner(dolphins_score, koalas_score);
+            };
+            const handleChallenge04 = () => {
+                const billValue = document.getElementById("bill").value;
+                const tip =
+                    billValue >= 50 && billValue <= 300
+                        ? billValue * 0.15
+                        : billValue * 0.2;
+                const totalValue = Number(billValue) + tip;
+                const tbChallenge04 = document.getElementById("tbChallenge04");
+                tbChallenge04.innerHTML = `The bill was ${billValue}, the tip was ${tip}, and the total value ${totalValue}`;
+            };
+            const handleChallenge05 = () => {
+                console.log("Challenge 05");
+                const calcAverage = (score1, score2, score3) =>
+                    (score1 + score2 + score3) / 3;
+                const avgDolphins1 = calcAverage(44, 23, 71);
+                const avgKoalas1 = calcAverage(65, 54, 49);
+
+                const avgDolphins2 = calcAverage(85, 54, 41);
+                const avgKoalas2 = calcAverage(23, 34, 27);
+                const checkWinner = (avgDolphins, avgKoalas) => {
+                    if (avgDolphins >= 2 * avgKoalas) {
+                        console.log(
+                            `Dolphins win (${avgDolphins} vs. ${avgKoalas})`
+                        );
+                    } else if (avgKoalas >= 2 * avgDolphins) {
+                        console.log(
+                            `Koalas win (${avgKoalas} vs. ${avgDolphins})`
+                        );
+                    } else {
+                        console.log("No team wins!");
+                    }
+                };
+                console.log("Data 1:");
+                checkWinner(avgDolphins1, avgKoalas1);
+
+                console.log("Data 2:");
+                checkWinner(avgDolphins2, avgKoalas2);
+            };
+            const handleChallenge06 = () => {
+                console.log("Challenge 06");
+                const calcTip = (bill) =>
+                    bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+                const bills = [125, 555, 44];
+                const tips = [];
+                const totals = [];
+                for (const bill of bills) {
+                    const tip = calcTip(bill);
+                    tips.push(tip);
+                    totals.push(bill + tip);
+                }
+                console.log("Tips:", tips);
+                console.log("Totals:", totals);
+            };
+            const handleChallenge07 = () => {
+                console.log("Challenge 07");
+                const mark = {
+                    fullName: "Mark Miller",
+                    mass: 78,
+                    height: 1.69,
+                    calcBMI: function () {
+                        this.bmi = this.mass / this.height ** 2;
+                        return this.bmi;
+                    },
+                };
+                const john = {
+                    fullName: "John Smith",
+                    mass: 92,
+                    height: 1.95,
+
+                    calcBMI: function () {
+                        this.bmi = this.mass / this.height ** 2;
+                        return this.bmi;
+                    },
+                };
+                mark.calcBMI();
+                john.calcBMI();
+                if (mark.bmi > john.bmi) {
+                    console.log(
+                        `${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})!`
+                    );
+                } else if (john.bmi > mark.bmi) {
+                    console.log(
+                        `${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`
+                    );
+                } else {
+                    console.log("They have the same BMI.");
+                }
+            };
+            const handleChallenge08 = () => {
+                const calcTip = (bill) =>
+                    bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+                console.log("Challenge 08");
+                const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+                const tips = [];
+                const totals = [];
+                for (let i = 0; i < bills.length; i++) {
+                    const tip = calcTip(bills[i]);
+                    tips.push(tip);
+                    totals.push(bills[i] + tip);
+                }
+                console.log("Tips:", tips);
+                console.log("Totals:", totals);
+                const calcAverage = (arr) => {
+                    const sum = arr.reduce((acc, cur) => acc + cur, 0);
+                    return sum / arr.length;
+                };
+                const average = calcAverage(totals);
+                console.log("Average Total:", average);
+            };
+            const handleChallenge09 = () => {
+                console.log("Challenge 09");
+                const printForecast = (arr) => {
+                    let forecastString = "";
+                    for (let i = 0; i < arr.length; i++) {
+                        forecastString += `... ${arr[i]}°C in ${i + 1} days `;
+                    }
+                    console.log(forecastString);
+                };
+
+                const data1 = [17, 21, 23];
+                const data2 = [12, 5, -5, 0, 4];
+                console.log("Data 1:");
+                printForecast(data1);
+                console.log("Data 2:");
+                printForecast(data2);
+            };
+            handleChallenge05();
+            handleChallenge06();
+            handleChallenge07();
+            handleChallenge08();
+            handleChallenge09();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const game = {
+                team1: "Bayern Munich",
+                team2: "Borrussia Dortmund",
+                players: [
+                    [
+                        "Neuer",
+                        "Pavard",
+                        "Lucas",
+                        "Hernandez",
+                        "Davies",
+                        "Kimmich",
+                        "Goretzka",
+                        "Coman",
+                        "Muller",
+                        "Gnarby",
+                        "Lewandowski",
+                    ],
+                    [
+                        "Burki",
+                        "Schulz",
+                        "Hummels",
+                        "Akanji",
+                        "Hakimi",
+                        "Weigl",
+                        "Witsel",
+                        "Hazard",
+                        "Brandt",
+                        "Sancho",
+                        "Gotze",
+                    ],
+                ],
+                score: "4:0",
+                scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+                date: "Nov 9th, 2037",
+                odds: {
+                    team1: 1.33,
+                    x: 3.25,
+                    team2: 6.5,
+                },
+            };
+
+            // Nhiệm vụ 1: Tạo mảng cầu thủ cho từng đội
+            const [players1, players2] = game.players;
+
+            // Nhiệm vụ 2: Tạo biến 'gk' cho thủ môn và mảng 'fieldPlayers' cho các cầu thủ trường
+            const [gk, ...fieldPlayers] = players1;
+
+            // Nhiệm vụ 3: Tạo mảng 'allPlayers' chứa tất cả cầu thủ của cả hai đội
+            const allPlayers = [...players1, ...players2];
+
+            // Nhiệm vụ 4: Tạo mảng 'players1Final' chứa cầu thủ gốc của team1 và 3 cầu thủ thay người
+            const players1Final = [
+                ...players1,
+                "Thiago",
+                "Coutinho",
+                "Perisic",
+            ];
+
+            // Nhiệm vụ 5: Tạo biến cho các tỷ lệ cược
+            const { team1, x: draw, team2 } = game.odds;
+
+            // Nhiệm vụ 6: Hàm 'printGoals' in ra tên cầu thủ và tổng số bàn thắng
+            function printGoals(...players) {
+                console.log(`${players.length} goals were scored by:`);
+                for (const player of players) {
+                    console.log(player);
+                }
+            }
+
+            // Nhiệm vụ 7: In ra đội có tỷ lệ cược thấp hơn
+            console.log(team1 < team2 && "Team 1 is more likely to win");
+            console.log(team1 > team2 && "Team 2 is more likely to win");
+
+            // Kiểm tra nhiệm vụ 6 với dữ liệu thử nghiệm
+            printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+            printGoals(...game.scored);
+        </script>
+    </body>
+</html>
